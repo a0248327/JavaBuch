@@ -17,9 +17,8 @@ public class ForumExceptionHandler extends ExceptionHandler {
 	Logger log = Logger.getLogger(getClass());
 
 	@Override
-	public ActionForward execute(Exception exception, ExceptionConfig config,
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException {
+	public ActionForward execute(Exception exception, ExceptionConfig config, ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException {
 
 		request.setAttribute("exception", exception);
 

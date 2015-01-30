@@ -48,14 +48,13 @@
 	<div class="t3">
 		<table cellspacing="0" cellpadding="0" width="100%" align="center">
 			<tr>
-				<td style="padding-top: 12px;text-align: left;">
-					<img src="images/yellow/index/home.gif" align="absbottom" />
-					<b> <a
+				<td style="padding-top: 12px; text-align: left;"><img
+					src="images/yellow/index/home.gif" align="absbottom" /> <b> <a
 						href="<html:rewrite action="/category?action=list" />&category.id=${ board.category.id }">${
-							board.category.name }</a> &raquo; <a
+							board.category.name }</a>
+						&raquo; <a
 						href="<html:rewrite action="/thread?action=list" />&board.id=${ board.id }">${
-							board.name }</a>
-				</td>
+							board.name }</a></td>
 			</tr>
 		</table>
 		<br />
@@ -66,20 +65,15 @@
 			<tr>
 				<td align="left">
 					<div class="fl">
-						<div class="pages">
-							${ pagination }
-						</div>
+						<div class="pages">${ pagination }</div>
 					</div>
 				</td>
-				<td align="right" style="padding-bottom:.2em">
-					<a
-						href="<html:rewrite action="/reply?action=initAdd" />&thread.id=${ thread.id }"><img
-							src="images/yellow/reply.png" /> </a>
-					<a
-						href="<html:rewrite action="/thread?action=initAdd" />&board.id=${ board.id }"
-						style="margin-left:.5em"><img src="images/yellow/post.png"
-							id="td_post" /> </a>
-				</td>
+				<td align="right" style="padding-bottom: .2em"><a
+					href="<html:rewrite action="/reply?action=initAdd" />&thread.id=${ thread.id }"><img
+						src="images/yellow/reply.png" /> </a> <a
+					href="<html:rewrite action="/thread?action=initAdd" />&board.id=${ board.id }"
+					style="margin-left: .5em"><img src="images/yellow/post.png"
+						id="td_post" /> </a></td>
 			</tr>
 		</table>
 	</div>
@@ -88,38 +82,31 @@
 		<html:hidden property="action" value="add" />
 		<html:hidden property="board.id" />
 		<!-- Thread Start -->
-		<div class="t" style="margin-bottom:0px; border-bottom:0">
+		<div class="t" style="margin-bottom: 0px; border-bottom: 0">
 			<table cellspacing="0" cellpadding="0" width="100%">
 				<tr>
-					<th class="h">
-						<strong class="fl w"><b>发表帖子</b>
-						</strong>
-					</th>
+					<th class="h"><strong class="fl w"><b>发表帖子</b> </strong></th>
 				</tr>
 			</table>
 		</div>
 
 		<div class="t t2">
 			<table cellspacing="0" cellpadding="0" width="100%"
-				style="table-layout:fixed;border-top:0">
+				style="table-layout: fixed; border-top: 0">
 				<tr class="tr1">
-					<th style="width:20%" class="r_two" style="text-align: right">
-						主题
-					</th>
+					<th style="width: 20%" class="r_two" style="text-align: right">
+						主题</th>
 					<th height="100%" class="r_one" valign="top" id="td_4900235"
-						style="padding:5px 15px 0 15px; border:0;width:80%; overflow:hidden">
+						style="padding: 5px 15px 0 15px; border: 0; width: 80%; overflow: hidden">
 						<html:text property="thread.title" style="width: 500px; "></html:text>
 					</th>
 				</tr>
 				<tr class="tr1 r_one">
-					<th style="width:20%" class="r_two" style="text-align: right">
-						内容
-					</th>
-					<th style="vertical-align:bottom;padding-left:15px;border:0">
+					<th style="width: 20%" class="r_two" style="text-align: right">
+						内容</th>
+					<th style="vertical-align: bottom; padding-left: 15px; border: 0">
 						<html:textarea property="thread.content"
-							style="width: 500px; height: 200px; "></html:textarea>
-						<br />
-						<br />
+							style="width: 500px; height: 200px; "></html:textarea> <br /> <br />
 						<html:submit value="提交" styleClass="btn"></html:submit>
 					</th>
 				</tr>

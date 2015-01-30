@@ -41,8 +41,7 @@ public abstract class ServiceImpl<T extends BaseBean> implements IService<T> {
 		return dao.list(hql);
 	}
 
-	public List<T> list(String hql, int firstResult, int maxSize,
-			Object... params) {
+	public List<T> list(String hql, int firstResult, int maxSize, Object... params) {
 		return dao.list(hql, firstResult, maxSize, params);
 	}
 

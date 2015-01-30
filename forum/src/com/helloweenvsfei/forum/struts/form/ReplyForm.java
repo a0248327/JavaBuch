@@ -36,8 +36,7 @@ public class ReplyForm extends ForumForm {
 	 * @param request
 	 * @return ActionErrors
 	 */
-	public ActionErrors validate(ActionMapping mapping,
-			HttpServletRequest request) {
+	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}

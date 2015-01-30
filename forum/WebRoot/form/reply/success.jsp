@@ -11,29 +11,25 @@
 <div id="main">
 
 	<!-- Thread Start -->
-	<div class="t" style="margin-bottom:0px; border-bottom:0">
+	<div class="t" style="margin-bottom: 0px; border-bottom: 0">
 		<table cellspacing="0" cellpadding="0" width="100%">
 			<tr>
-				<th class="h">
-					<strong class="fl w">发表成功</strong>
-				</th>
+				<th class="h"><strong class="fl w">发表成功</strong></th>
 			</tr>
 		</table>
 	</div>
 
 	<div class="t t2">
 		<table cellspacing="0" cellpadding="0" width="100%"
-			style="table-layout:fixed;border-top:0">
+			style="table-layout: fixed; border-top: 0">
 			<tr class="tr1">
-				<th>
+				<th><a
+					href="<html:rewrite action="/thread?action=view" />&thread.id=${ thread.id }">回到刚刚回复的帖子</a>
 
-<a
-	href="<html:rewrite action="/thread?action=view" />&thread.id=${ thread.id }">回到刚刚回复的帖子</a>
 
-	
-					</th>
-				</tr>
-			</table>
-		</div>
+				</th>
+			</tr>
+		</table>
+	</div>
 
 	<jsp:include flush="true" page="../footer.jsp" />

@@ -36,12 +36,12 @@ public class PersonAction extends ForumAction {
 	/**
 	 * 默认方法 返回到注册页面
 	 */
-	public ActionForward list(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		// PersonForm personForm = (PersonForm) form;
 		//
-		// List<Person> personList = personService.list(" from Person ", 0, 100,
+		// List<Person> personList = personService.list(" from Person ",
+		// 0, 100,
 		// null);
 		//
 		// request.setAttribute("personList", personList);
@@ -53,14 +53,14 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 显示注册页面
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	public ActionForward initAdd(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注册");
@@ -70,14 +70,14 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 显示登录页面
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	public ActionForward initLogin(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initLogin(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户登录");
@@ -87,14 +87,14 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 注册
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	public ActionForward add(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注册");
@@ -105,17 +105,14 @@ public class PersonAction extends ForumAction {
 		person.setDateCreated(new Date());
 		person.setDateLastActived(new Date());
 
-		if (person.getAccount() == null
-				|| person.getAccount().trim().length() == 0) {
+		if (person.getAccount() == null || person.getAccount().trim().length() == 0) {
 
 			request.setAttribute("message", "请输入帐号");
 
 			return this.initAdd(mapping, form, request, response);
 		}
 
-		if (person.getPassword() == null
-				|| person.getPassword().trim().length() == 0
-				|| !person.getPassword().equals(personForm.getPassword())) {
+		if (person.getPassword() == null || person.getPassword().trim().length() == 0 || !person.getPassword().equals(personForm.getPassword())) {
 
 			request.setAttribute("message", "密码不一致");
 
@@ -129,8 +126,7 @@ public class PersonAction extends ForumAction {
 
 			request.setAttribute("message", "注册成功");
 
-			return new ActionForward("success", "/form/person/success.jsp",
-					false);
+			return new ActionForward("success", "/form/person/success.jsp", false);
 
 		} catch (Exception e) {
 
@@ -142,6 +138,7 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 登录
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -149,15 +146,12 @@ public class PersonAction extends ForumAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward login(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward login(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户登录");
 
-		Person person = personService.getPerson(personForm.getPerson()
-				.getAccount(), personForm.getPerson().getPassword());
+		Person person = personService.getPerson(personForm.getPerson().getAccount(), personForm.getPerson().getPassword());
 
 		if (person == null)
 			throw new AccountException("用户名密码错误");
@@ -176,6 +170,7 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 注销
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -183,9 +178,7 @@ public class PersonAction extends ForumAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward logout(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward logout(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注销");
@@ -197,6 +190,7 @@ public class PersonAction extends ForumAction {
 
 	/**
 	 * 查看用户信息
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -204,15 +198,12 @@ public class PersonAction extends ForumAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward view(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward view(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("查看用户资料");
 
-		Person person = personService.find(Person.class, personForm.getPerson()
-				.getId());
+		Person person = personService.find(Person.class, personForm.getPerson().getId());
 
 		request.setAttribute("person", person);
 

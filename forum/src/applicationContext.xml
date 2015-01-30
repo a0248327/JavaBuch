@@ -3,8 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
@@ -59,81 +58,66 @@
 
 	<bean id="personService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.service.impl.PersonServiceImpl">
+			<bean class="com.helloweenvsfei.forum.service.impl.PersonServiceImpl">
 				<property name="dao" ref="dao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
 
 	<bean id="categoryService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.service.impl.CategoryServiceImpl">
+			<bean class="com.helloweenvsfei.forum.service.impl.CategoryServiceImpl">
 				<property name="dao" ref="dao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
 
 	<bean id="boardService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.service.impl.BoardServiceImpl">
+			<bean class="com.helloweenvsfei.forum.service.impl.BoardServiceImpl">
 				<property name="dao" ref="dao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
 
 	<bean id="threadService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.service.impl.ThreadServiceImpl">
+			<bean class="com.helloweenvsfei.forum.service.impl.ThreadServiceImpl">
 				<property name="dao" ref="dao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
 
 	<bean id="replyService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.service.impl.ReplyServiceImpl">
+			<bean class="com.helloweenvsfei.forum.service.impl.ReplyServiceImpl">
 				<property name="dao" ref="dao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
 
@@ -141,8 +125,7 @@
 		class="com.helloweenvsfei.forum.struts.interceptor.LoginInterceptor">
 	</bean>
 
-	<bean name="/person"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/person" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="interceptorNames">
 			<list>
 				<value>loginInterceptor</value>
@@ -150,38 +133,33 @@
 		</property>
 		<!-- 被拦截的对象 -->
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.struts.action.PersonAction">
+			<bean class="com.helloweenvsfei.forum.struts.action.PersonAction">
 				<property name="personService" ref="personService"></property>
 			</bean>
 		</property>
 	</bean>
 
-	<bean name="/category"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/category" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="interceptorNames">
 			<list>
 				<value>loginInterceptor</value>
 			</list>
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.struts.action.CategoryAction">
+			<bean class="com.helloweenvsfei.forum.struts.action.CategoryAction">
 				<property name="categoryService" ref="categoryService"></property>
 			</bean>
 		</property>
 	</bean>
 
-	<bean name="/board"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/board" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="interceptorNames">
 			<list>
 				<value>loginInterceptor</value>
 			</list>
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.struts.action.BoardAction">
+			<bean class="com.helloweenvsfei.forum.struts.action.BoardAction">
 				<property name="boardService" ref="boardService" />
 				<property name="categoryService" ref="categoryService" />
 				<property name="threadService" ref="threadService"></property>
@@ -190,16 +168,14 @@
 		</property>
 	</bean>
 
-	<bean name="/thread"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/thread" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="interceptorNames">
 			<list>
 				<value>loginInterceptor</value>
 			</list>
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.struts.action.ThreadAction">
+			<bean class="com.helloweenvsfei.forum.struts.action.ThreadAction">
 				<property name="personService" ref="personService" />
 				<property name="boardService" ref="boardService" />
 				<property name="threadService" ref="threadService" />
@@ -208,16 +184,14 @@
 		</property>
 	</bean>
 
-	<bean name="/reply"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/reply" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="interceptorNames">
 			<list>
 				<value>loginInterceptor</value>
 			</list>
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.forum.struts.action.ReplyAction">
+			<bean class="com.helloweenvsfei.forum.struts.action.ReplyAction">
 				<property name="personService" ref="personService" />
 				<property name="threadService" ref="threadService" />
 				<property name="replyService" ref="replyService" />

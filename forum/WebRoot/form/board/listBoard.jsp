@@ -7,7 +7,8 @@
 
 <jsp:include flush="true" page="../header.jsp" />
 
-		<c:forEach var="board" items="${ boardList }">
-			${ board.category.name }: ${ board.name }, ${ board.description } <a href="<html:rewrite action="/thread" />?board.id=${ board.id }">Publish</a> <BR />
-		</c:forEach>
-		
+<c:forEach var="board" items="${ boardList }">
+			${ board.category.name }: ${ board.name }, ${ board.description } <a
+		href="<html:rewrite action="/thread" />?board.id=${ board.id }">Publish</a>
+	<BR />
+</c:forEach>

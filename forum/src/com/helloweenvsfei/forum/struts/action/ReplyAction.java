@@ -39,21 +39,18 @@ public class ReplyAction extends ForumAction {
 
 	private IReplyService<Reply> replyService;
 
-	public ActionForward list(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ReplyForm replyForm = (ReplyForm) form;
 
 		return null;
 	}
 
-	public ActionForward initAdd(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ReplyForm replyForm = (ReplyForm) form;
 
-		Thread thread = threadService.find(Thread.class, replyForm.getThread()
-				.getId());
+		Thread thread = threadService.find(Thread.class, replyForm.getThread().getId());
 
 		request.setAttribute("category", thread.getBoard().getCategory());
 		request.setAttribute("board", thread.getBoard());
@@ -64,13 +61,11 @@ public class ReplyAction extends ForumAction {
 		return new ActionForward("add", "/form/reply/addReply.jsp", false);
 	}
 
-	public ActionForward add(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ReplyForm replyForm = (ReplyForm) form;
 
-		Thread thread = threadService.find(Thread.class, replyForm.getThread()
-				.getId());
+		Thread thread = threadService.find(Thread.class, replyForm.getThread().getId());
 
 		PersonInfo personInfo = PersonUtil.getPersonInfo(request, response);
 		Person person = personService.find(Person.class, personInfo.getId());
@@ -88,7 +83,7 @@ public class ReplyAction extends ForumAction {
 		request.setAttribute("board", thread.getBoard());
 		request.setAttribute("thread", thread);
 		request.setAttribute("reply", reply);
-		
+
 		replyForm.setTitle("回复帖子 - 标题：" + thread.getTitle());
 
 		return new ActionForward("success", "/form/reply/success.jsp", false);

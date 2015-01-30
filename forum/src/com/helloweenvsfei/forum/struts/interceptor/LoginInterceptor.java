@@ -21,8 +21,7 @@ import com.helloweenvsfei.forum.struts.util.PersonUtil;
 
 public class LoginInterceptor implements MethodBeforeAdvice {
 
-	public void before(Method method, Object[] args, Object instance)
-			throws Throwable {
+	public void before(Method method, Object[] args, Object instance) throws Throwable {
 
 		ActionMapping mapping = (ActionMapping) args[0];
 		ActionForm form = (ActionForm) args[1];
@@ -36,13 +35,9 @@ public class LoginInterceptor implements MethodBeforeAdvice {
 
 		if (forumAction instanceof PersonAction) {
 
-		} else if (forumAction instanceof CategoryAction
-				|| forumAction instanceof BoardAction
-				|| forumAction instanceof ThreadAction
-				|| forumAction instanceof ReplyAction) {
+		} else if (forumAction instanceof CategoryAction || forumAction instanceof BoardAction || forumAction instanceof ThreadAction || forumAction instanceof ReplyAction) {
 
-			if ("initAdd".equals(forumForm.getAction())
-					|| "add".equals(forumForm.getAction())) {
+			if ("initAdd".equals(forumForm.getAction()) || "add".equals(forumForm.getAction())) {
 
 				needsCheck = true;
 			}

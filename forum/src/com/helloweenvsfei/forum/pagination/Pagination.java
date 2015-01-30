@@ -78,8 +78,7 @@ public class Pagination {
 				}
 
 				try {
-					queryString.append(name + "="
-							+ URLEncoder.encode(value, "UTF-8"));
+					queryString.append(name + "=" + URLEncoder.encode(value, "UTF-8"));
 				} catch (Exception e) {
 					queryString.append(name + "=" + value);
 				}
@@ -98,13 +97,13 @@ public class Pagination {
 	 * 生成分页信息 包括第一页，上一页，下一页，最后一页等等。
 	 * 
 	 * @param pageNum
-	 *            当前页数
+	 *                当前页数
 	 * @param pageCount
-	 *            总页数
+	 *                总页数
 	 * @param recordCount
-	 *            总记录数
+	 *                总记录数
 	 * @param pageUrl
-	 *            页面 URL
+	 *                页面 URL
 	 * @return
 	 */
 	public String toString() {
@@ -123,55 +122,42 @@ public class Pagination {
 		 * href="thread-htm-fid-82-page-4.html">4</a><a
 		 * href="thread-htm-fid-82-page-5.html">5</a> <input type="text"
 		 * size="3" onkeydown="javascript: if(event.keyCode==13){
-		 * location='thread.php?fid=82&page='+this.value+'';return false;}"> <a
-		 * href="thread-htm-fid-82-page-42.html"
+		 * location='thread.php?fid=82&page='+this.value+'';return
+		 * false;}"> <a href="thread-htm-fid-82-page-42.html"
 		 * style="font-weight:bold">&raquo;</a> Pages: ( 1/42 total )
 		 */
 
 		buffer.append("每页");
 
-		buffer
-				.append("<select name=ibm_crl_scm_page_size_select onchange='setPageSize(value); ' >");
-		buffer.append(" <option value=20"
-				+ (pageSize == 20 ? " selected " : "") + ">20</option>");
-		buffer.append(" <option value=40"
-				+ (pageSize == 40 ? " selected " : "") + ">40</option>");
-		buffer.append(" <option value=60"
-				+ (pageSize == 60 ? " selected " : "") + ">60</option>");
-		buffer.append(" <option value=80"
-				+ (pageSize == 80 ? " selected " : "") + ">80</option>");
-		buffer.append(" <option value=100"
-				+ (pageSize == 100 ? " selected " : "") + ">100</option>");
+		buffer.append("<select name=ibm_crl_scm_page_size_select onchange='setPageSize(value); ' >");
+		buffer.append(" <option value=20" + (pageSize == 20 ? " selected " : "") + ">20</option>");
+		buffer.append(" <option value=40" + (pageSize == 40 ? " selected " : "") + ">40</option>");
+		buffer.append(" <option value=60" + (pageSize == 60 ? " selected " : "") + ">60</option>");
+		buffer.append(" <option value=80" + (pageSize == 80 ? " selected " : "") + ">80</option>");
+		buffer.append(" <option value=100" + (pageSize == 100 ? " selected " : "") + ">100</option>");
 		buffer.append("</select>条");
 
 		buffer.append(" 第" + pageNum + "/" + pageCount + "页  ");
 
 		buffer.append(" 共" + recordCount + "条 ");
 
-		buffer.append(pageCount == 0 || pageNum == 1 ? " 第一页 " : " <a href='"
-				+ url + "&pageNum=1'>第一页</a> ");
+		buffer.append(pageCount == 0 || pageNum == 1 ? " 第一页 " : " <a href='" + url + "&pageNum=1'>第一页</a> ");
 
 		buffer.append("    ");
 
-		buffer.append(pageCount == 0 || pageNum == 1 ? " 上一页 " : " <a href='"
-				+ url + "&pageNum=" + (pageNum - 1) + "'>上一页</a> ");
+		buffer.append(pageCount == 0 || pageNum == 1 ? " 上一页 " : " <a href='" + url + "&pageNum=" + (pageNum - 1) + "'>上一页</a> ");
 
 		buffer.append("    ");
 
-		buffer.append(pageCount == 0 || pageNum == pageCount ? " 下一页 "
-				: " <a href='" + url + "&pageNum=" + (pageNum + 1)
-						+ "'>下一页</a> ");
+		buffer.append(pageCount == 0 || pageNum == pageCount ? " 下一页 " : " <a href='" + url + "&pageNum=" + (pageNum + 1) + "'>下一页</a> ");
 
 		buffer.append("    ");
 
-		buffer.append(pageCount == 0 || pageNum == pageCount ? " 最后一页 "
-				: " <a href='" + url + "&pageNum=" + pageCount + "'>最后一页</a> ");
+		buffer.append(pageCount == 0 || pageNum == pageCount ? " 最后一页 " : " <a href='" + url + "&pageNum=" + pageCount + "'>最后一页</a> ");
 
-		buffer.append("   到<input type='text' name='ibm_crl_scm_goto_input' "
-				+ " style='width:20px; font-size:12px; text-align:center; '>页");
+		buffer.append("   到<input type='text' name='ibm_crl_scm_goto_input' " + " style='width:20px; font-size:12px; text-align:center; '>页");
 
-		buffer.append("<input type='button' "
-				+ " name='ibm_crl_scm_goto_button' value='Go' class='button'>");
+		buffer.append("<input type='button' " + " name='ibm_crl_scm_goto_button' value='Go' class='button'>");
 
 		buffer.append("<script language='javascript'>");
 		buffer.append("function helloweenvsfei_enter(){");
@@ -185,8 +171,7 @@ public class Pagination {
 		buffer.append(" location='" + url + "&pageSize=' + pageSize;");
 		buffer.append("} ");
 		buffer.append("function helloweenvsfei_goto(){");
-		buffer
-				.append(" var numText = document.getElementsByName('ibm_crl_scm_goto_input')[0].value;");
+		buffer.append(" var numText = document.getElementsByName('ibm_crl_scm_goto_input')[0].value;");
 		buffer.append(" var num = parseInt(numText, 10);");
 		buffer.append(" if(!num){");
 		buffer.append("     alert('页数必须为数字');   ");
@@ -198,10 +183,8 @@ public class Pagination {
 		buffer.append(" }");
 		buffer.append(" location='" + url + "&pageNum=' + num;");
 		buffer.append("}");
-		buffer
-				.append("document.getElementsByName('ibm_crl_scm_goto_input')[0].onkeypress = helloweenvsfei_enter;");
-		buffer
-				.append("document.getElementsByName('ibm_crl_scm_goto_button')[0].onclick = helloweenvsfei_goto;");
+		buffer.append("document.getElementsByName('ibm_crl_scm_goto_input')[0].onkeypress = helloweenvsfei_enter;");
+		buffer.append("document.getElementsByName('ibm_crl_scm_goto_button')[0].onclick = helloweenvsfei_goto;");
 		buffer.append("</script>");
 
 		return buffer.toString();

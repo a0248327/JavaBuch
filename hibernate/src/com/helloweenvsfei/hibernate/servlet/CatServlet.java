@@ -78,7 +78,7 @@ public class CatServlet extends HttpServlet {
 
 		baseDAO.create(cat);
 
-		request.setAttribute("msg", "Ìí¼Ó '" + cat.getName() + "' ³É¹¦¡£");
+		request.setAttribute("msg", "ï¿½ï¿½ï¿½ '" + cat.getName() + "' ï¿½É¹ï¿½ï¿½ï¿½");
 		list(request, response);
 	}
 
@@ -143,9 +143,9 @@ public class CatServlet extends HttpServlet {
 
 		if (!hasLoop) {
 			baseDAO.update(cat);
-			request.setAttribute("msg", "±£´æ '" + cat.getName() + "' ³É¹¦¡£");
+			request.setAttribute("msg", "ï¿½ï¿½ï¿½ï¿½ '" + cat.getName() + "' ï¿½É¹ï¿½ï¿½ï¿½");
 		} else {
-			request.setAttribute("msg", "±£´æÊ§°Ü¡£·¢ÏÖÑ­»·¡£");
+			request.setAttribute("msg", "ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½");
 		}
 
 		list(request, response);
@@ -164,12 +164,12 @@ public class CatServlet extends HttpServlet {
 					.list(" select c from Cat c where c.mother.id = " + id);
 
 			if (catList.size() > 0) {
-				request.setAttribute("msg", "ÎÞ·¨É¾³ý '" + cat.getName()
-						+ "'¡£ÇëÏÈÉ¾³ý×ÓCat¡£");
+				request.setAttribute("msg", "ï¿½Þ·ï¿½É¾ï¿½ï¿½ '" + cat.getName()
+						+ "'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Catï¿½ï¿½");
 			} else {
 				baseDAO.delete(cat);
 
-				request.setAttribute("msg", "É¾³ý '" + cat.getName() + "' ³É¹¦¡£");
+				request.setAttribute("msg", "É¾ï¿½ï¿½ '" + cat.getName() + "' ï¿½É¹ï¿½ï¿½ï¿½");
 			}
 		}
 		list(request, response);

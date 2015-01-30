@@ -48,34 +48,25 @@ public class ThreadAction extends ForumAction {
 
 	@Override
 	@SuppressWarnings("all")
-	public ActionForward list(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		return this.view(mapping, form, request, response);
 	}
 
 	@SuppressWarnings("all")
-	public ActionForward view(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward view(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ThreadForm threadForm = (ThreadForm) form;
 
-		Thread thread = threadService.find(Thread.class, threadForm.getThread()
-				.getId());
+		Thread thread = threadService.find(Thread.class, threadForm.getThread().getId());
 
-		int totalCount = replyService.getTotalCount(
-				" select count(r) from Reply r "
-						+ " where r.deleted = false and r.thread.id = "
-						+ threadForm.getThread().getId(), null);
+		int totalCount = replyService.getTotalCount(" select count(r) from Reply r " + " where r.deleted = false and r.thread.id = " + threadForm.getThread().getId(), null);
 
 		Pagination pagination = new Pagination(request, response);
 		pagination.setRecordCount(totalCount);
 
-		List<Reply> replyList = replyService.list(
-				" from Reply r where r.deleted = false and r.thread.id = "
-						+ threadForm.getThread().getId()
-						+ " order by r.id asc ", pagination.getFirstResult(),
-				pagination.getPageSize(), null);
+		List<Reply> replyList = replyService.list(" from Reply r where r.deleted = false and r.thread.id = " + threadForm.getThread().getId() + " order by r.id asc ",
+				pagination.getFirstResult(), pagination.getPageSize(), null);
 
 		threadService.updateHit(thread.getId());
 
@@ -90,13 +81,11 @@ public class ThreadAction extends ForumAction {
 		return new ActionForward("list", "/form/thread/viewThread.jsp", false);
 	}
 
-	public ActionForward initAdd(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ThreadForm threadForm = (ThreadForm) form;
 
-		Board board = boardService.find(Board.class, threadForm.getBoard()
-				.getId());
+		Board board = boardService.find(Board.class, threadForm.getBoard().getId());
 
 		threadForm.setBoard(board);
 
@@ -107,13 +96,11 @@ public class ThreadAction extends ForumAction {
 		return new ActionForward("add", "/form/thread/addThread.jsp", false);
 	}
 
-	public ActionForward add(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		ThreadForm threadForm = (ThreadForm) form;
 
-		Board board = boardService.find(Board.class, threadForm.getBoard()
-				.getId());
+		Board board = boardService.find(Board.class, threadForm.getBoard().getId());
 
 		PersonInfo personInfo = PersonUtil.getPersonInfo(request, response);
 		Person person = personService.find(Person.class, personInfo.getId());

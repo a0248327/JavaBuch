@@ -11,25 +11,21 @@
 <div id="main">
 
 	<!-- Thread Start -->
-	<div class="t" style="margin-bottom:0px; border-bottom:0">
+	<div class="t" style="margin-bottom: 0px; border-bottom: 0">
 		<table cellspacing="0" cellpadding="0" width="100%">
 			<tr>
-				<th class="h">
-					<strong class="fl w">添加成功</strong>
-				</th>
+				<th class="h"><strong class="fl w">添加成功</strong></th>
 			</tr>
 		</table>
 	</div>
 
 	<div class="t t2">
 		<table cellspacing="0" cellpadding="0" width="100%"
-			style="table-layout:fixed;border-top:0">
+			style="table-layout: fixed; border-top: 0">
 			<tr class="tr1">
-				<th style="text-align: center; line-height: 20px; ">
-
-					<a href="<html:rewrite action="/category?action=initAdd" />">继续添加</a>
-					<br />
-					<a href="<html:rewrite action="/category?action=list" />">回到首页</a>
+				<th style="text-align: center; line-height: 20px;"><a
+					href="<html:rewrite action="/category?action=initAdd" />">继续添加</a>
+					<br /> <a href="<html:rewrite action="/category?action=list" />">回到首页</a>
 
 
 				</th>

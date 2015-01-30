@@ -24,7 +24,7 @@ public class Thread extends BaseBean {
 	private String title;
 
 	@Basic(fetch = FetchType.LAZY)
-	@Column(columnDefinition="longtext")
+	@Column(columnDefinition = "longtext")
 	private String content;
 
 	@ManyToOne

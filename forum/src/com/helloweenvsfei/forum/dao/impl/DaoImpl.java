@@ -40,13 +40,11 @@ public class DaoImpl<T> extends HibernateDaoSupport implements IDao<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> list(String hql, int firstResult, int maxResults,
-			Object... params) {
+	public List<T> list(String hql, int firstResult, int maxResults, Object... params) {
 		Query query = createQuery(hql);
 		for (int i = 0; params != null && i < params.length; i++)
 			query.setParameter(i + 1, params[i]);
-		List<T> list = createQuery(hql).setFirstResult(firstResult)
-				.setMaxResults(maxResults).list();
+		List<T> list = createQuery(hql).setFirstResult(firstResult).setMaxResults(maxResults).list();
 		return list;
 	}
 

@@ -47,27 +47,20 @@ public class BoardAction extends ForumAction {
 
 	@Override
 	@SuppressWarnings("all")
-	public ActionForward list(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		BoardForm boardForm = (BoardForm) form;
 
-		Board board = boardService.find(Board.class, boardForm.getBoard()
-				.getId());
+		Board board = boardService.find(Board.class, boardForm.getBoard().getId());
 		boardForm.setBoard(board);
 
-		int totalCount = threadService.getTotalCount(
-				" select count(t) from Thread t "
-						+ " where t.deleted = false and t.board.id = "
-						+ board.getId(), null);
+		int totalCount = threadService.getTotalCount(" select count(t) from Thread t " + " where t.deleted = false and t.board.id = " + board.getId(), null);
 
 		Pagination pagination = new Pagination(request, response);
 		pagination.setRecordCount(totalCount);
 
-		List<Thread> threadList = threadService.list(" select t from Thread t "
-				+ " where t.deleted = false and t.board.id = " + board.getId()
-				+ " order by t.dateLastReplied desc ", pagination
-				.getFirstResult(), pagination.getPageSize(), null);
+		List<Thread> threadList = threadService.list(" select t from Thread t " + " where t.deleted = false and t.board.id = " + board.getId() + " order by t.dateLastReplied desc ",
+				pagination.getFirstResult(), pagination.getPageSize(), null);
 
 		request.setAttribute("board", board);
 		request.setAttribute("pagination", pagination);
@@ -78,28 +71,24 @@ public class BoardAction extends ForumAction {
 		return new ActionForward("list", "/form/thread/listThread.jsp", false);
 	}
 
-	public ActionForward initAdd(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		BoardForm boardForm = (BoardForm) form;
 		boardForm.setTitle("添加版面");
 
-		List<Category> categoryList = categoryService
-				.list(" from Category c where c.deleted = false ");
+		List<Category> categoryList = categoryService.list(" from Category c where c.deleted = false ");
 
 		request.setAttribute("categoryList", categoryList);
 
 		return new ActionForward("add", "/form/board/addBoard.jsp", false);
 	}
 
-	public ActionForward add(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		BoardForm boardForm = (BoardForm) form;
 		boardForm.setTitle("添加版面");
 
-		Category category = categoryService.find(Category.class, boardForm
-				.getCategory().getId());
+		Category category = categoryService.find(Category.class, boardForm.getCategory().getId());
 
 		Board board = boardForm.getBoard();
 		board.setCategory(category);
@@ -112,22 +101,18 @@ public class BoardAction extends ForumAction {
 		return new ActionForward("success", "/form/board/success.jsp", false);
 	}
 
-	public ActionForward initSetAdmin(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initSetAdmin(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		BoardForm boardForm = (BoardForm) form;
 
-		Board board = boardService.find(Board.class, boardForm.getBoard()
-				.getId());
+		Board board = boardService.find(Board.class, boardForm.getBoard().getId());
 
-		List<Person> personList = personService
-				.list(" from Person p where p.deleted = false ");
+		List<Person> personList = personService.list(" from Person p where p.deleted = false ");
 
 		int[] adminId = new int[board.getAdministrators().size()];
 
 		int i = 0;
-		for (Iterator<Person> it = board.getAdministrators().iterator(); it
-				.hasNext(); i++) {
+		for (Iterator<Person> it = board.getAdministrators().iterator(); it.hasNext(); i++) {
 			Person p = it.next();
 			adminId[i] = p.getId();
 		}
@@ -141,13 +126,11 @@ public class BoardAction extends ForumAction {
 		return new ActionForward("success", "/form/board/setAdmin.jsp", false);
 	}
 
-	public ActionForward setAdmin(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward setAdmin(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		BoardForm boardForm = (BoardForm) form;
 
-		Board board = boardService.find(Board.class, boardForm.getBoard()
-				.getId());
+		Board board = boardService.find(Board.class, boardForm.getBoard().getId());
 
 		board.getAdministrators().clear();
 

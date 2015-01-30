@@ -16,6 +16,5 @@ public interface IService<T> {
 
 	public int getTotalCount(String hql, Object... params);
 
-	public List<T> list(String hql, int firstResult, int maxSize,
-			Object... params);
+	public List<T> list(String hql, int firstResult, int maxSize, Object... params);
 }

@@ -31,23 +31,18 @@ public class CategoryAction extends ForumAction {
 
 	private ICategoryService<Category> categoryService;
 
-	public ActionForward list(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		CategoryForm categoryForm = (CategoryForm) form;
 
-		List<Category> categoryList = categoryService.list(
-				" from Category where deleted = false ", 0, Integer.MAX_VALUE,
-				null);
+		List<Category> categoryList = categoryService.list(" from Category where deleted = false ", 0, Integer.MAX_VALUE, null);
 
 		request.setAttribute("categoryList", categoryList);
 
-		return new ActionForward("list", "/form/category/listCategory.jsp",
-				false);
+		return new ActionForward("list", "/form/category/listCategory.jsp", false);
 	}
 
-	public ActionForward initAdd(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		CategoryForm categoryForm = (CategoryForm) form;
 		categoryForm.setTitle("添加类别");
@@ -55,8 +50,7 @@ public class CategoryAction extends ForumAction {
 		return new ActionForward("add", "/form/category/addCategory.jsp", false);
 	}
 
-	public ActionForward add(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		CategoryForm categoryForm = (CategoryForm) form;
 		categoryForm.setTitle("添加类别");
