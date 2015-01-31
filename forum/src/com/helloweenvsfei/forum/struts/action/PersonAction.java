@@ -61,11 +61,9 @@ public class PersonAction extends ForumAction {
 	 * @return
 	 */
 	public ActionForward initAdd(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
-
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注册");
-
-		return mapping.findForward("add");
+		return mapping.findForward("add");	// 返回添加页面
 	}
 
 	/**
@@ -78,15 +76,15 @@ public class PersonAction extends ForumAction {
 	 * @return
 	 */
 	public ActionForward initLogin(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
-
+		
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户登录");
-
 		return new ActionForward("login", "/form/person/login.jsp", false);
+		
 	}
 
 	/**
-	 * 注册
+	 * 注册方法
 	 * 
 	 * @param mapping
 	 * @param form
@@ -97,41 +95,31 @@ public class PersonAction extends ForumAction {
 	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
 		PersonForm personForm = (PersonForm) form;
-		personForm.setTitle("用户注册");
+		personForm.setTitle("用户注册");							// 设置标题
 
 		Person person = personForm.getPerson();
-		person.setIpCreated(request.getRemoteAddr());
-		person.setIpLastActived(request.getRemoteAddr());
-		person.setDateCreated(new Date());
-		person.setDateLastActived(new Date());
+		person.setIpCreated(request.getRemoteAddr());				// 记录注册id
+		person.setIpLastActived(request.getRemoteAddr());			// 记录本次登陆ip
+		person.setDateCreated(new Date());						// 记录注册时间
+		person.setDateLastActived(new Date());					// 记录本次登陆时间
 
 		if (person.getAccount() == null || person.getAccount().trim().length() == 0) {
-
-			request.setAttribute("message", "请输入帐号");
-
-			return this.initAdd(mapping, form, request, response);
+			request.setAttribute("message", "请输入帐号");			// 如果没有输入账号
+			return this.initAdd(mapping, form, request, response);	// 转到输入页面
 		}
 
 		if (person.getPassword() == null || person.getPassword().trim().length() == 0 || !person.getPassword().equals(personForm.getPassword())) {
-
-			request.setAttribute("message", "密码不一致");
-
-			return this.initAdd(mapping, form, request, response);
+			request.setAttribute("message", "密码不一致");			// 如果两次密码不一致
+			return this.initAdd(mapping, form, request, response);	// 转到输入页面
 		}
 
 		try {
-			personService.create(person);
-
-			PersonUtil.setPersonInf(request, response, person);
-
+			personService.create(person);							// 保存到数据库
+			PersonUtil.setPersonInf(request, response, person);		// 将信息写入session
 			request.setAttribute("message", "注册成功");
-
 			return new ActionForward("success", "/form/person/success.jsp", false);
-
 		} catch (Exception e) {
-
 			request.setAttribute("message", "注册失败，原因：" + e.getMessage());
-
 			return this.initAdd(mapping, form, request, response);
 		}
 	}
@@ -150,21 +138,16 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户登录");
-
 		Person person = personService.getPerson(personForm.getPerson().getAccount(), personForm.getPerson().getPassword());
 
 		if (person == null)
 			throw new AccountException("用户名密码错误");
 
 		PersonUtil.setPersonInf(request, response, person);
-
 		person.setIpLastActived(request.getRemoteAddr());
 		person.setDateLastActived(new Date());
-
 		personService.save(person);
-
 		request.setAttribute("message", "欢迎回来");
-
 		return new ActionForward("success", "/form/person/success.jsp", false);
 	}
 
@@ -182,9 +165,7 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注销");
-
 		request.getSession(true).setAttribute(PersonUtil.PERSON_INFO, null);
-
 		return new ActionForward("success", "/", true);
 	}
 
@@ -202,11 +183,8 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("查看用户资料");
-
 		Person person = personService.find(Person.class, personForm.getPerson().getId());
-
 		request.setAttribute("person", person);
-
 		return new ActionForward("view", "/form/person/viewPerson.jsp", false);
 	}
 

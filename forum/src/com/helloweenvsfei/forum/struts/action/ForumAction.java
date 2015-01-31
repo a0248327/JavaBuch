@@ -12,9 +12,9 @@ import org.apache.struts.actions.DispatchAction;
 
 import com.helloweenvsfei.forum.struts.form.ForumForm;
 
-public abstract class ForumAction extends DispatchAction {
+public abstract class ForumAction extends DispatchAction {	// action基类
 
-	protected Log log = LogFactory.getLog(getClass());
+	protected Log log = LogFactory.getLog(getClass());			// 日志记录器
 
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {

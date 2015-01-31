@@ -12,9 +12,9 @@ import javax.persistence.Table;
 @org.hibernate.annotations.Entity
 public class Category extends BaseBean {
 
-	private String name;
+	private String name;										// 使用默认配置
 
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category")						// 多对多属性
 	private List<Board> boards = new ArrayList<Board>();
 
 	public List<Board> getBoards() {

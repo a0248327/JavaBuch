@@ -9,7 +9,6 @@ public class BoardServiceImpl<T extends Board> extends ServiceImpl<T> implements
 	public void create(T board) {
 
 		if (dao.createQuery(" from Board b where b.deleted = false and b.name = :name ").setParameter("name", board.getName().trim()).list().size() > 0) {
-
 			throw new RuntimeException("版面 " + board.getName() + " 已经存在。");
 		}
 

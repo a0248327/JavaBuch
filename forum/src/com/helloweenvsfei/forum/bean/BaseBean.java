@@ -10,19 +10,19 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@MappedSuperclass
+@MappedSuperclass										// 实体类父亲
 public class BaseBean {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id													// id配置
+	@GeneratedValue(strategy = GenerationType.AUTO)	// id规则配置
 	private Integer id;
 
-	@Version
-	private Integer version;
+	@Version											// 版本列
+	private Integer version;								// hibernate自动维护该列
 
 	private boolean deleted;
 
-	@Temporal(value = TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)		// 时间戳
 	private Date dateCreated;
 
 	public boolean isDeleted() {

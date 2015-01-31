@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table
+@Entity																// 实体类配置
+@Table																// 表格配置
 public class Person extends BaseBean {
 
 	private String account;
@@ -28,13 +28,13 @@ public class Person extends BaseBean {
 
 	private String ipCreated;
 
-	@Temporal(value = TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)					// 最后一次登陆的时间
 	private Date dateLastActived;
 
-	private String ipLastActived;
+	private String ipLastActived;										// 最后一次登陆的ip
 
-	@ManyToMany(mappedBy = "administrators")
-	private Set<Board> boardsAdministrated = new HashSet<Board>();
+	@ManyToMany(mappedBy = "administrators")						// 多对多属性
+	private Set<Board> boardsAdministrated = new HashSet<Board>();	// 管理的版面
 
 	public String getAccount() {
 		return account;
