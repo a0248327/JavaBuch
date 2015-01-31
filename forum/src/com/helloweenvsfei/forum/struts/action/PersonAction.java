@@ -138,17 +138,17 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户登录");
-		Person person = personService.getPerson(personForm.getPerson().getAccount(), personForm.getPerson().getPassword());
+		Person person = personService.getPerson(personForm.getPerson().getAccount(), personForm.getPerson().getPassword());	// 用户是否存在
 
 		if (person == null)
 			throw new AccountException("用户名密码错误");
 
-		PersonUtil.setPersonInf(request, response, person);
-		person.setIpLastActived(request.getRemoteAddr());
-		person.setDateLastActived(new Date());
-		personService.save(person);
-		request.setAttribute("message", "欢迎回来");
-		return new ActionForward("success", "/form/person/success.jsp", false);
+		PersonUtil.setPersonInf(request, response, person);	// 把用户信息保存起来
+		person.setIpLastActived(request.getRemoteAddr());	// 用户最后一次登陆的ip
+		person.setDateLastActived(new Date());			// 最后一次登陆的时间
+		personService.save(person);						// 保存用户
+		request.setAttribute("message", "欢迎回来");		// 欢迎回来
+		return new ActionForward("success", "/form/person/success.jsp", false);	// 到登陆成功界面
 	}
 
 	/**
@@ -165,8 +165,8 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("用户注销");
-		request.getSession(true).setAttribute(PersonUtil.PERSON_INFO, null);
-		return new ActionForward("success", "/", true);
+		request.getSession(true).setAttribute(PersonUtil.PERSON_INFO, null);	// 取消用户信息（用户登陆信息）
+		return new ActionForward("success", "/", true);	// 成功登出
 	}
 
 	/**
@@ -183,9 +183,9 @@ public class PersonAction extends ForumAction {
 
 		PersonForm personForm = (PersonForm) form;
 		personForm.setTitle("查看用户资料");
-		Person person = personService.find(Person.class, personForm.getPerson().getId());
-		request.setAttribute("person", person);
-		return new ActionForward("view", "/form/person/viewPerson.jsp", false);
+		Person person = personService.find(Person.class, personForm.getPerson().getId());	// 找到该用户
+		request.setAttribute("person", person);												// 设置该用户信息
+		return new ActionForward("view", "/form/person/viewPerson.jsp", false);			// 转到显示用户界面
 	}
 
 	public IPersonService<Person> getPersonService() {

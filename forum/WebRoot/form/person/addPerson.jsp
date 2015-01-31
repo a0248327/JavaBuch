@@ -5,6 +5,7 @@
 <%@ taglib uri="http://jakarta.apache.org/struts/tags-html"
 	prefix="html"%>
 
+<!-- ****************************** 页头 ****************************** -->
 <jsp:include flush="true" page="../header.jsp"></jsp:include>
 
 
@@ -21,6 +22,7 @@
 	</div>
 
 	<html:form action="/person">
+		<!-- ****************************** ?action=add ****************************** -->
 		<html:hidden property="action" value="add" />
 		<div class="t t2">
 			<table cellspacing="0" cellpadding="0" width="100%"
@@ -65,4 +67,5 @@
 		</div>
 	</html:form>
 
+<!-- ****************************** 页尾 ****************************** -->
 	<jsp:include flush="true" page="../footer.jsp" />

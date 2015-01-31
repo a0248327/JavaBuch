@@ -5,6 +5,7 @@
 <%@ taglib uri="http://jakarta.apache.org/struts/tags-html"
 	prefix="html"%>
 
+<!-- ****************************** 页头 ****************************** -->
 <jsp:include flush="true" page="../header.jsp"></jsp:include>
 
 
@@ -59,6 +60,7 @@
 					<td>负责的版面:</td>
 					<td><c:forEach items="${ person.boardsAdministrated }"
 							var="board">
+							<!-- ****************************** ?action=list ****************************** -->
 							<a
 								href="<html:rewrite action="/board?action=list" />&board.id=${ board.id }">${
 								board.name }</a>
@@ -68,5 +70,5 @@
 		</div>
 	</html:form>
 
-
+<!-- ****************************** 页尾 ****************************** -->
 	<jsp:include flush="true" page="../footer.jsp" />

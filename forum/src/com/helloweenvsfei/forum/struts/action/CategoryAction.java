@@ -29,16 +29,13 @@ import com.helloweenvsfei.forum.struts.form.CategoryForm;
  */
 public class CategoryAction extends ForumAction {
 
-	private ICategoryService<Category> categoryService;
+	private ICategoryService<Category> categoryService;		// service 对象
 
-	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {	// 列出类别
 
 		CategoryForm categoryForm = (CategoryForm) form;
-
-		List<Category> categoryList = categoryService.list(" from Category where deleted = false ", 0, Integer.MAX_VALUE, null);
-
+		List<Category> categoryList = categoryService.list(" from Category where deleted = false ", 0, Integer.MAX_VALUE, null);		// 列出类别
 		request.setAttribute("categoryList", categoryList);
-
 		return new ActionForward("list", "/form/category/listCategory.jsp", false);
 	}
 
@@ -46,7 +43,6 @@ public class CategoryAction extends ForumAction {
 
 		CategoryForm categoryForm = (CategoryForm) form;
 		categoryForm.setTitle("添加类别");
-
 		return new ActionForward("add", "/form/category/addCategory.jsp", false);
 	}
 
@@ -54,14 +50,10 @@ public class CategoryAction extends ForumAction {
 
 		CategoryForm categoryForm = (CategoryForm) form;
 		categoryForm.setTitle("添加类别");
-
 		Category category = categoryForm.getCategory();
 		category.setDateCreated(new Date());
-
 		categoryService.create(category);
-
 		request.setAttribute("category", category);
-
 		return new ActionForward("add", "/form/category/success.jsp", false);
 	}
 

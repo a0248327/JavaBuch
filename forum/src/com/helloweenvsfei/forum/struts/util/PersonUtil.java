@@ -11,21 +11,19 @@ public class PersonUtil {
 
 	public static PersonInfo getPersonInfo(HttpServletRequest request, HttpServletResponse response) {
 
-		return (PersonInfo) request.getSession(true).getAttribute(PERSON_INFO);
+		return (PersonInfo) request.getSession(true).getAttribute(PERSON_INFO);		// 3. 得到信息
 	}
 
 	public static void setPersonInf(HttpServletRequest request, HttpServletResponse response, PersonInfo personInfo) {
 
-		request.getSession(true).setAttribute(PERSON_INFO, personInfo);
+		request.getSession(true).setAttribute(PERSON_INFO, personInfo);				// 2. 设置信息
 	}
 
-	public static void setPersonInf(HttpServletRequest request, HttpServletResponse response, Person person) {
+	public static void setPersonInf(HttpServletRequest request, HttpServletResponse response, Person person) {	// 1. 设置用户信息
 
 		PersonInfo personInfo = new PersonInfo();
-
 		personInfo.setId(person.getId());
 		personInfo.setAccount(person.getAccount());
-
 		setPersonInf(request, response, personInfo);
 	}
 }

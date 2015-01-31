@@ -19,7 +19,8 @@ import com.helloweenvsfei.forum.struts.action.ThreadAction;
 import com.helloweenvsfei.forum.struts.form.ForumForm;
 import com.helloweenvsfei.forum.struts.util.PersonUtil;
 
-public class LoginInterceptor implements MethodBeforeAdvice {
+
+public class LoginInterceptor implements MethodBeforeAdvice {	// 登陆拦截器
 
 	public void before(Method method, Object[] args, Object instance) throws Throwable {
 
@@ -34,11 +35,8 @@ public class LoginInterceptor implements MethodBeforeAdvice {
 		boolean needsCheck = false;
 
 		if (forumAction instanceof PersonAction) {
-
 		} else if (forumAction instanceof CategoryAction || forumAction instanceof BoardAction || forumAction instanceof ThreadAction || forumAction instanceof ReplyAction) {
-
 			if ("initAdd".equals(forumForm.getAction()) || "add".equals(forumForm.getAction())) {
-
 				needsCheck = true;
 			}
 		}
