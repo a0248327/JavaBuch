@@ -10,7 +10,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/forum?characterEncoding=UTF-8" />
 		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="password" value="" />
 	</bean>
 
 	<!-- ****************************** 把beans映射到数据库中 ****************************** -->
