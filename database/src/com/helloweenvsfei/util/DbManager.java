@@ -34,11 +34,8 @@ public class DbManager {
 	 * @throws SQLException
 	 */
 	public static Connection getConnection(String dbName, String userName, String password) throws SQLException {
-
 		String url = "jdbc:mysql://localhost:3306/" + dbName + "?characterEncoding=utf-8";
-
 		DriverManager.registerDriver(new Driver());
-
 		return DriverManager.getConnection(url, userName, password);
 	}
 
@@ -50,10 +47,8 @@ public class DbManager {
 	 * @throws SQLException
 	 */
 	public static void setParams(PreparedStatement preStmt, Object... params) throws SQLException {
-
 		if (params == null || params.length == 0)
 			return;
-
 		for (int i = 1; i <= params.length; i++) {
 			Object param = params[i - 1];
 			if (param == null) {
@@ -96,19 +91,13 @@ public class DbManager {
 	 * @throws SQLException
 	 */
 	public static int executeUpdate(String sql, Object... params) throws SQLException {
-
 		Connection conn = null;
 		PreparedStatement preStmt = null;
-
 		try {
 			conn = getConnection();
-
 			preStmt = conn.prepareStatement(sql);
-
 			setParams(preStmt, params);
-
 			return preStmt.executeUpdate();
-
 		} finally {
 			if (preStmt != null)
 				preStmt.close();
@@ -126,11 +115,9 @@ public class DbManager {
 	 * @throws SQLException
 	 */
 	public static int getCount(String sql) throws SQLException {
-
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();

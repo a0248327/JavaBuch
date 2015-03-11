@@ -25,11 +25,9 @@ public class Person2 {
 
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = Email.class, cascade = {
-			CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, targetEntity = Email.class, cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumns(value = { @JoinColumn(name = "person_id", referencedColumnName = "id") })
-	@OrderBy(value="email desc")
+	@OrderBy(value = "email desc")
 	private List<Email> emails = new ArrayList<Email>();
 
 	public List<Email> getEmails() {

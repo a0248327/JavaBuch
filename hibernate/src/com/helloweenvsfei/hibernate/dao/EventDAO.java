@@ -13,8 +13,7 @@ public class EventDAO<T extends Event> extends BaseDAO<T> {
 	@SuppressWarnings("all")
 	public T find(Class<? extends T> clazz, Serializable id) {
 
-		Session session = HibernateSessionFactory.getSessionFactory()
-				.openSession();
+		Session session = HibernateSessionFactory.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 

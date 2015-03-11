@@ -43,15 +43,13 @@ public class TestLazyInitializationException {
 			List<Email> list = p.getEmails(); // 加载数据，将会抛出异常
 
 			System.out.println(p.getName() + " 的电子邮件: ");
-			for (Email mail : list) {	// 循环输出Email
+			for (Email mail : list) { // 循环输出Email
 				System.out.println("\t" + mail.getEmail());
 			}
 		} catch (Exception e) {
 			String title = e.getClass().getName();
-			String msg = e.getMessage().replace(",", ",\r\n").replace(":",
-					":\r\n");
-			JOptionPane.showMessageDialog(null, msg, title,
-					JOptionPane.ERROR_MESSAGE);
+			String msg = e.getMessage().replace(",", ",\r\n").replace(":", ":\r\n");
+			JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

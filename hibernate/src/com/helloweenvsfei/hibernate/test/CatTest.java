@@ -34,8 +34,7 @@ public class CatTest {
 		mimmy.setCreateDate(new Date());
 
 		// 开启一个 Hibernate 对话
-		Session session = HibernateSessionFactory.getSessionFactory()
-				.openSession();
+		Session session = HibernateSessionFactory.getSessionFactory().openSession();
 		// 开启一个事务
 		Transaction trans = session.beginTransaction();
 
@@ -54,9 +53,7 @@ public class CatTest {
 		// 遍历 输出猫与猫妈妈
 		for (Cat cc : catList) {
 			result.append("猫: " + cc.getName() + ",          ");
-			result.append("猫妈妈: "
-					+ (cc.getMother() == null ? "没有记录" : cc.getMother()
-							.getName()));
+			result.append("猫妈妈: " + (cc.getMother() == null ? "没有记录" : cc.getMother().getName()));
 			result.append("\r\n");
 		}
 

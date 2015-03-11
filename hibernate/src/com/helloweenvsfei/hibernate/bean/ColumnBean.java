@@ -23,7 +23,7 @@ public class ColumnBean {
 	private String name;
 
 	@Column(name = "salary", scale = 8, precision = 2)
-	@Basic(fetch = FetchType.LAZY, optional=true)
+	@Basic(fetch = FetchType.LAZY, optional = true)
 	private double salary;
 
 	public Integer getId() {

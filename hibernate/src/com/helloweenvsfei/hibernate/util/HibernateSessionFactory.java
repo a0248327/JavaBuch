@@ -13,11 +13,11 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSessionFactory {
 
 	/**
-	 * Location of hibernate.cfg.xml file. Location should be on the classpath
-	 * as Hibernate uses #resourceAsStream style lookup for its configuration
-	 * file. The default classpath location of the hibernate config file is in
-	 * the default package. Use #setConfigFile() to update the location of the
-	 * configuration file for the current session.
+	 * Location of hibernate.cfg.xml file. Location should be on the
+	 * classpath as Hibernate uses #resourceAsStream style lookup for its
+	 * configuration file. The default classpath location of the hibernate
+	 * config file is in the default package. Use #setConfigFile() to update
+	 * the location of the configuration file for the current session.
 	 */
 	private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
 	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
@@ -52,8 +52,7 @@ public class HibernateSessionFactory {
 			if (sessionFactory == null) {
 				rebuildSessionFactory();
 			}
-			session = (sessionFactory != null) ? sessionFactory.openSession()
-					: null;
+			session = (sessionFactory != null) ? sessionFactory.openSession() : null;
 			threadLocal.set(session);
 		}
 

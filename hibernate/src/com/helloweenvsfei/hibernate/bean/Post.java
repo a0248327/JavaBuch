@@ -23,17 +23,13 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST})
-	@JoinTable(
-			name = "tb_tag_post", 
-			joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"), 
-			inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
-	)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
+	@JoinTable(name = "tb_tag_post", joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private Set<Tag> tags = new HashSet<Tag>();;
 
 	private String title;
 
-	@Column(columnDefinition="text")
+	@Column(columnDefinition = "text")
 	private String content;
 
 	public String getContent() {

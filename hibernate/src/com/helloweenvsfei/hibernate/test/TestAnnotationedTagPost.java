@@ -31,10 +31,7 @@ public class TestAnnotationedTagPost {
 		// 保存进数据库
 		session.persist(post);
 
-		List<Post> list = session.createQuery(
-				" select p from Post p left join fetch p.tags t "
-						+ " where t.name = :name ").setParameter("name", "幽默")
-				.list();
+		List<Post> list = session.createQuery(" select p from Post p left join fetch p.tags t " + " where t.name = :name ").setParameter("name", "幽默").list();
 
 		System.out.println("与标签“幽默”相关的帖子：");
 		for (Post p : list) {

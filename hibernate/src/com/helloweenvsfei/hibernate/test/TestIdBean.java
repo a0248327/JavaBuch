@@ -10,8 +10,7 @@ public class TestIdBean {
 
 	public static void main(String[] args) {
 
-		SessionFactory factory = new Configuration().addClass(IdBean.class)
-				.buildSessionFactory();
+		SessionFactory factory = new Configuration().addClass(IdBean.class).buildSessionFactory();
 
 		Session session = factory.openSession();
 

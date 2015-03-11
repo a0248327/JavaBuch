@@ -48,10 +48,7 @@ public class CatEventTest extends TestCase {
 		// 输出该Cat的所有Event
 		String s = cc.getName() + " 所有近况：\r\n";
 		for (Event ev : cc.getEvents()) {
-			s += "    - ["
-					+ DateFormat.getTimeInstance()
-							.format(event.getCreateDate()) + "] "
-					+ ev.getDescription() + "\r\n";
+			s += "    - [" + DateFormat.getTimeInstance().format(event.getCreateDate()) + "] " + ev.getDescription() + "\r\n";
 		}
 
 		JOptionPane.showMessageDialog(null, s);

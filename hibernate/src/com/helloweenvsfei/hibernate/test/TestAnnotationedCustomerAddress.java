@@ -37,9 +37,7 @@ public class TestAnnotationedCustomerAddress {
 
 		session.flush();
 
-		List<Customer> list = session.createQuery(
-				" select c from Customer c where c.name = :name ")
-				.setParameter("name", "Helloween").list();
+		List<Customer> list = session.createQuery(" select c from Customer c where c.name = :name ").setParameter("name", "Helloween").list();
 
 		for (Customer c : list) {
 			session.refresh(c);

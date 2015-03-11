@@ -21,14 +21,13 @@ import javax.persistence.TemporalType;
 
 //@NamedQuery(name = "all cat", query = " select c from Cat c ")
 //@NamedNativeQuery(name = "all cat", query = "select * from tb_cat")
-@NamedQueries(value = {
-		@NamedQuery(name = "all cat", query = " select c from Cat c "),
+@NamedQueries(value = { @NamedQuery(name = "all cat", query = " select c from Cat c "),
 		@NamedQuery(name = "cat by name", query = " select c from Cat c where c.name = :name ", hints = { @QueryHint(name = "org.hibernate.callable", value = "true") }),
 		@NamedQuery(name = "cat by mother", query = " select c from Cat c ") })
-//@NamedNativeQueries(value = {
-//		@NamedNativeQuery(name = "all cat", query = "select * from tb_cat"),
-//		@NamedNativeQuery(name = "all cat", query = "select * from tb_cat"),
-//		@NamedNativeQuery(name = "all cat", query = "select * from tb_cat") })
+// @NamedNativeQueries(value = {
+// @NamedNativeQuery(name = "all cat", query = "select * from tb_cat"),
+// @NamedNativeQuery(name = "all cat", query = "select * from tb_cat"),
+// @NamedNativeQuery(name = "all cat", query = "select * from tb_cat") })
 @Entity
 // 注解Entity表示该类能被Hibernate持久化
 @Table(name = "tb_cat")
@@ -62,7 +61,8 @@ public class Cat {
 	private Date createDate;
 
 	@OneToMany(mappedBy = "cat")
-	// @JoinColumns(value = { @JoinColumn(name = "cat_id", referencedColumnName
+	// @JoinColumns(value = { @JoinColumn(name = "cat_id",
+	// referencedColumnName
 	// = "id") })
 	private List<Event> events = new ArrayList<Event>();
 

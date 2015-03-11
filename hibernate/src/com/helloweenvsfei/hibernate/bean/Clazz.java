@@ -32,7 +32,8 @@ public class Clazz {
 
 	// @OneToMany(mappedBy = "clazz")
 	// @MapKey(name="name")
-	// private Map<String, Student> students = new HashSet<String, Student>();
+	// private Map<String, Student> students = new HashSet<String,
+	// Student>();
 
 	public Integer getId() {
 		return id;

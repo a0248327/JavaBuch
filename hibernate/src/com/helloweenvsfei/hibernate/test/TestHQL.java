@@ -15,8 +15,7 @@ public class TestHQL {
 
 	public static void main(String[] args) {
 
-		Session session = HibernateSessionFactory.getSessionFactory()
-				.openSession();
+		Session session = HibernateSessionFactory.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		Cat cat = new Cat();
@@ -37,15 +36,11 @@ public class TestHQL {
 		Query q = session.createQuery(" select count(c) from Cat c ");
 		Long count = (Long) q.uniqueResult();
 
-		List<String> nameList = session.createQuery(
-				" select c.name from Cat c ").list();
+		List<String> nameList = session.createQuery(" select c.name from Cat c ").list();
 
-		int c = (Integer) session.createQuery(
-				" select max(c.id) from Cat c where c.mother = null ")
-				.uniqueResult();
+		int c = (Integer) session.createQuery(" select max(c.id) from Cat c where c.mother = null ").uniqueResult();
 
-		List list = session.createQuery(
-				" select c.name, c.mother, c.createDate from Cat c ").list();
+		List list = session.createQuery(" select c.name, c.mother, c.createDate from Cat c ").list();
 
 		for (Object row : list) {
 			System.out.println("-------------------------");
@@ -54,9 +49,7 @@ public class TestHQL {
 			}
 		}
 
-		List list2 = session.createQuery(
-				" select new List(c.name, c.mother, c.createDate) from Cat c ")
-				.list();
+		List list2 = session.createQuery(" select new List(c.name, c.mother, c.createDate) from Cat c ").list();
 
 		for (Object row : list2) {
 			System.out.println("-------------------------");
@@ -65,10 +58,7 @@ public class TestHQL {
 			}
 		}
 
-		List listMap = session
-				.createQuery(
-						" select new map(c.name as name, c.mother as mother, c.createDate as createDate) "
-								+ " from Cat c ").list();
+		List listMap = session.createQuery(" select new map(c.name as name, c.mother as mother, c.createDate as createDate) " + " from Cat c ").list();
 
 		for (Map map : (List<Map>) listMap) {
 			System.out.println("Name: " + map.get("name"));
@@ -76,36 +66,25 @@ public class TestHQL {
 			System.out.println("createDate: " + map.get("createDate"));
 		}
 
-		session
-				.createQuery(
-						" select c from Cat c "
-								+ " where c.mother.name = null and c.createDate < :createDate and size(c.events) > 0 ")
-				.setParameter("createDate", new Date()).list();
+		session.createQuery(" select c from Cat c " + " where c.mother.name = null and c.createDate < :createDate and size(c.events) > 0 ").setParameter("createDate", new Date()).list();
 
 		System.out.println(count);
 
-		List<String> sList = session.createQuery(
-				" select c.name || 'µÄÂèÂèÎª' || c.mother.name "
-						+ " from Cat c where c.mother != null ").list();
+		List<String> sList = session.createQuery(" select c.name || 'µÄÂèÂèÎª' || c.mother.name " + " from Cat c where c.mother != null ").list();
 
 		for (String s : sList) {
 			System.out.println(s);
 		}
 
-		List<Cat> ccList = session.createQuery(" from Cat ").setFirstResult(0)
-				.setMaxResults(10).list();
+		List<Cat> ccList = session.createQuery(" from Cat ").setFirstResult(0).setMaxResults(10).list();
 
 		for (Cat ct : ccList) {
 			System.out.println(ct.getId());
 		}
 
-		List<Event> eventList = session.createQuery(
-				" select e from Event e where e.cat.name = 'Ketty' ").list();
+		List<Event> eventList = session.createQuery(" select e from Event e where e.cat.name = 'Ketty' ").list();
 
-		List<Cat> bList = session.createQuery(
-				" select c from Cat c left join c.events e "
-						+ " where e.description like :description ")
-				.setParameter("description", "%³ÔÔç·¹%").list();
+		List<Cat> bList = session.createQuery(" select c from Cat c left join c.events e " + " where e.description like :description ").setParameter("description", "%³ÔÔç·¹%").list();
 
 		for (Cat ct : bList) {
 			System.out.println(ct.getName());

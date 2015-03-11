@@ -33,9 +33,7 @@ public class TestXmlShipSailor {
 
 		session.persist(ship);
 
-		List<Sailor> list = session.createQuery(
-				" select s from Sailor s where s.ship.name = :name ")
-				.setParameter("name", "泰坦尼克").list();
+		List<Sailor> list = session.createQuery(" select s from Sailor s where s.ship.name = :name ").setParameter("name", "泰坦尼克").list();
 
 		for (Sailor s : list) {
 			System.out.println("水手：" + s.getName());

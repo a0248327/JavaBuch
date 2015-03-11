@@ -14,8 +14,7 @@ public class HibernateXMLUtil {
 	static {
 		try {
 			// ¥” hibernate_xml.cfg.xml ÷–º”‘ÿ≈‰÷√
-			sessionFactory = new Configuration().configure(
-					"hibernate_xml.cfg.xml").buildSessionFactory();
+			sessionFactory = new Configuration().configure("hibernate_xml.cfg.xml").buildSessionFactory();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
@@ -40,14 +39,14 @@ public class HibernateXMLUtil {
 
 		session.persist(cat);
 		session.persist(event);
-		
+
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 
 		session = getSessionFactory().openSession();
 		session.beginTransaction();
-		Cat cc = (Cat)session.get(Cat.class, cat.getId());
+		Cat cc = (Cat) session.get(Cat.class, cat.getId());
 		System.out.println(cc.getEvents().size());
 		session.getTransaction().commit();
 		session.close();

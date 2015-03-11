@@ -16,7 +16,8 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-//@Table(name = "tb_simple_bean", catalog = "hibernate1", schema = "hibernate2")
+// @Table(name = "tb_simple_bean", catalog = "hibernate1", schema =
+// "hibernate2")
 @Table(name = "tb_simple_bean")
 public class SimpleBean {
 

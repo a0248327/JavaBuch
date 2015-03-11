@@ -24,9 +24,7 @@ public class TestXmlPersonEmail3 {
 		session.persist(person);
 
 		// 查找拥有 雅虎中文邮箱 的所有用户
-		List list = session.createQuery(
-				" select p from Person3 p left join fetch p.emails e "
-						+ " where e like '%@yahoo.com.cn' ").list();
+		List list = session.createQuery(" select p from Person3 p left join fetch p.emails e " + " where e like '%@yahoo.com.cn' ").list();
 
 		// 输出用户及其所有的用户
 		for (Person3 p : (List<Person3>) list) {

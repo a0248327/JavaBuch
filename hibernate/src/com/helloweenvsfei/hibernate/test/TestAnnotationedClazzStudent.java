@@ -45,9 +45,7 @@ public class TestAnnotationedClazzStudent {
 		session.beginTransaction();
 
 		// 查询名为“三年二班”的班级 然后输出学生
-		Clazz c = (Clazz) session.createQuery(
-				" select c from Clazz c where c.name = :name ").setParameter(
-				"name", "三年二班").uniqueResult();
+		Clazz c = (Clazz) session.createQuery(" select c from Clazz c where c.name = :name ").setParameter("name", "三年二班").uniqueResult();
 
 		System.out.println("三年二班 的所有学生：");
 		for (Student s : c.getStudents()) {
@@ -55,9 +53,7 @@ public class TestAnnotationedClazzStudent {
 		}
 
 		// 直接查询班级为“三年二班”的学生
-		List<Student> students = session.createQuery(
-				" select s from Student s where s.clazz.name = :name ")
-				.setParameter("name", "三年二班").list();
+		List<Student> students = session.createQuery(" select s from Student s where s.clazz.name = :name ").setParameter("name", "三年二班").list();
 
 		System.out.println("三年二班 的所有学生：");
 		for (Student s : students) {

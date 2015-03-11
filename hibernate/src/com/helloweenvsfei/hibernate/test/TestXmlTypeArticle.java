@@ -26,8 +26,7 @@ public class TestXmlTypeArticle {
 
 		session.persist(article);
 
-		List<Article> list = session.createQuery(
-				" select a from Article a where a.name like '%明清%'  ").list();
+		List<Article> list = session.createQuery(" select a from Article a where a.name like '%明清%'  ").list();
 
 		for (Article a : list) {
 			System.out.println("类别：" + a.getType().getName());
@@ -42,7 +41,6 @@ public class TestXmlTypeArticle {
 	}
 
 	private static String substring(String content, int i) {
-		return content == null ? "" : content.length() < i + 1 ? content
-				: content.substring(0, i);
+		return content == null ? "" : content.length() < i + 1 ? content : content.substring(0, i);
 	}
 }

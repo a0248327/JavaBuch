@@ -28,15 +28,12 @@ public class EventTest {
 		try {
 			Event ev = eventDAO.find(Event.class, event.getId());
 
-			JOptionPane.showMessageDialog(null, "ev.getCat().getName(): \r\n"
-					+ ev.getCat().getName());
+			JOptionPane.showMessageDialog(null, "ev.getCat().getName(): \r\n" + ev.getCat().getName());
 		} catch (Throwable e) {
 
 			e.printStackTrace();
 
-			JOptionPane.showMessageDialog(null, e.getClass().getName()
-					+ ": \r\n" + e.getMessage(), e.getClass().getName(),
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getClass().getName() + ": \r\n" + e.getMessage(), e.getClass().getName(), JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
