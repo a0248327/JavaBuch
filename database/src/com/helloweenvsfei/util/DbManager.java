@@ -33,11 +33,9 @@ public class DbManager {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static Connection getConnection(String dbName, String userName,
-			String password) throws SQLException {
+	public static Connection getConnection(String dbName, String userName, String password) throws SQLException {
 
-		String url = "jdbc:mysql://localhost:3306/" + dbName
-				+ "?characterEncoding=utf-8";
+		String url = "jdbc:mysql://localhost:3306/" + dbName + "?characterEncoding=utf-8";
 
 		DriverManager.registerDriver(new Driver());
 
@@ -51,8 +49,7 @@ public class DbManager {
 	 * @param params
 	 * @throws SQLException
 	 */
-	public static void setParams(PreparedStatement preStmt, Object... params)
-			throws SQLException {
+	public static void setParams(PreparedStatement preStmt, Object... params) throws SQLException {
 
 		if (params == null || params.length == 0)
 			return;
@@ -98,8 +95,7 @@ public class DbManager {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static int executeUpdate(String sql, Object... params)
-			throws SQLException {
+	public static int executeUpdate(String sql, Object... params) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement preStmt = null;
@@ -125,7 +121,7 @@ public class DbManager {
 	 * 获取总数。
 	 * 
 	 * @param sql
-	 *            格式必须为 SELECT count(*) FROM ...
+	 *                格式必须为 SELECT count(*) FROM ...
 	 * @return
 	 * @throws SQLException
 	 */

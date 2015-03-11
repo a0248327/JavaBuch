@@ -19,15 +19,9 @@ public class PreparedBatchTest {
 		ResultSet rs = null;
 
 		try {
-			conn = DriverManager
-					.getConnection(
-							"jdbc:mysql://localhost:3306/databaseWeb?characterEncoding=UTF-8",
-							"root", "admin");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseWeb?characterEncoding=UTF-8", "root", "admin");
 
-			preStmt = conn.prepareStatement("insert into tb_person "
-					+ " ( name, english_name, age, "
-					+ " sex, birthday, description) "
-					+ " values (?, ?, ?, ?, ?) ");
+			preStmt = conn.prepareStatement("insert into tb_person " + " ( name, english_name, age, " + " sex, birthday, description) " + " values (?, ?, ?, ?, ?) ");
 
 			for (int i = 0; i < 5; i++) {
 
@@ -37,8 +31,7 @@ public class PreparedBatchTest {
 				preStmt.setString(index++, "English Name" + i);
 				preStmt.setInt(index++, 25);
 				preStmt.setString(index++, "男");
-				preStmt.setDate(index++, new java.sql.Date(System
-						.currentTimeMillis()));
+				preStmt.setDate(index++, new java.sql.Date(System.currentTimeMillis()));
 				preStmt.setString(index++, "");
 
 				// 添加同一条带参数的SQL语句

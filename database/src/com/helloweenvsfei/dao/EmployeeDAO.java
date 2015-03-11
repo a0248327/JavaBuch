@@ -20,13 +20,9 @@ public class EmployeeDAO {
 	 */
 	public static int insert(Employee employee) throws Exception {
 
-		String sql = " INSERT INTO tb_employee "
-				+ " (department_id, name, sex, employed_date) "
-				+ " VALUES (?,?,?,?) ";
+		String sql = " INSERT INTO tb_employee " + " (department_id, name, sex, employed_date) " + " VALUES (?,?,?,?) ";
 
-		return DbManager.executeUpdate(sql, employee.getDepartment().getId(),
-				employee.getName(), employee.getSex(), employee
-						.getEmployedDate());
+		return DbManager.executeUpdate(sql, employee.getDepartment().getId(), employee.getName(), employee.getSex(), employee.getEmployedDate());
 	}
 
 	/**
@@ -38,13 +34,9 @@ public class EmployeeDAO {
 	 */
 	public static int save(Employee employee) throws Exception {
 
-		String sql = " UPDATE tb_employee "
-				+ " set department_id = ?, name = ?, sex = ?, employed_date = ? "
-				+ " where id = ? ";
+		String sql = " UPDATE tb_employee " + " set department_id = ?, name = ?, sex = ?, employed_date = ? " + " where id = ? ";
 
-		return DbManager.executeUpdate(sql, employee.getDepartment().getId(),
-				employee.getName(), employee.getSex(), employee
-						.getEmployedDate(), employee.getId());
+		return DbManager.executeUpdate(sql, employee.getDepartment().getId(), employee.getName(), employee.getSex(), employee.getEmployedDate(), employee.getId());
 	}
 
 	/**
@@ -77,8 +69,7 @@ public class EmployeeDAO {
 				employee.setEmployedDate(rs.getDate("employed_date"));
 				employee.setSex(rs.getString("sex"));
 
-				employee.setDepartment(DepartmentDAO.find(rs
-						.getInt("department_id")));
+				employee.setDepartment(DepartmentDAO.find(rs.getInt("department_id")));
 
 				return employee;
 			} else {
@@ -125,8 +116,7 @@ public class EmployeeDAO {
 				employee.setEmployedDate(rs.getDate("employed_date"));
 				employee.setSex(rs.getString("sex"));
 
-				employee.setDepartment(DepartmentDAO.find(rs
-						.getInt("department_id")));
+				employee.setDepartment(DepartmentDAO.find(rs.getInt("department_id")));
 
 				list.add(employee);
 

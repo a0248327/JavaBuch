@@ -19,18 +19,12 @@ public class GetGeneratedKeysTest {
 		ResultSet rs = null;
 
 		try {
-			conn = DriverManager
-					.getConnection(
-							"jdbc:mysql://localhost:3306/databaseWeb?characterEncoding=UTF-8",
-							"root", "admin");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseWeb?characterEncoding=UTF-8", "root", "admin");
 
 			stmt = conn.createStatement();
 
 			// 执行 INSERT 语句
-			stmt.executeUpdate("insert into tb_person "
-					+ " ( name, english_name, age, "
-					+ " sex, birthday, description) "
-					+ " values ('Name', 'English Name', "
+			stmt.executeUpdate("insert into tb_person " + " ( name, english_name, age, " + " sex, birthday, description) " + " values ('Name', 'English Name', "
 					+ " '17', '男', current_date(), '') ");
 
 			// 获取自动生成的键值

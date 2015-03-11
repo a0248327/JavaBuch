@@ -10,7 +10,6 @@ import com.helloweenvsfei.bean.Department;
 import com.helloweenvsfei.util.DbManager;
 
 public class DepartmentDAO {
-
 	/**
 	 * 插入一条 Department 记录
 	 * 
@@ -18,9 +17,7 @@ public class DepartmentDAO {
 	 * @throws Exception
 	 */
 	public static int insert(Department department) throws Exception {
-
 		String sql = "INSERT INTO tb_department (name) VALUES ( ? ) ";
-
 		return DbManager.executeUpdate(sql, department.getName());
 	}
 
@@ -31,11 +28,8 @@ public class DepartmentDAO {
 	 * @throws Exception
 	 */
 	public static int save(Department department) throws Exception {
-
 		String sql = "UPDATE tb_department SET name = ? WHERE id = ? ";
-
-		return DbManager.executeUpdate(sql, department.getName(), department
-				.getId());
+		return DbManager.executeUpdate(sql, department.getName(), department.getId());
 	}
 
 	/**
@@ -46,11 +40,8 @@ public class DepartmentDAO {
 	 * @throws Exception
 	 */
 	public static int delete(Integer id) throws Exception {
-
 		String sql = "DELETE FROM tb_department WHERE id = ? ";
-
 		return DbManager.executeUpdate(sql, id);
-
 	}
 
 	/**
@@ -61,20 +52,15 @@ public class DepartmentDAO {
 	 * @throws Exception
 	 */
 	public static Department find(Integer id) throws Exception {
-
 		String sql = "SELECT * FROM tb_department WHERE id = ? ";
-
 		Connection conn = null;
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
-
 		try {
 			conn = DbManager.getConnection();
 			preStmt = conn.prepareStatement(sql);
 			preStmt.setInt(1, id);
-
 			rs = preStmt.executeQuery();
-
 			if (rs.next()) {
 				Department department = new Department();
 				department.setId(id);
@@ -83,7 +69,6 @@ public class DepartmentDAO {
 			} else {
 				return null;
 			}
-
 		} finally {
 			if (rs != null)
 				rs.close();
@@ -101,29 +86,21 @@ public class DepartmentDAO {
 	 * @throws Exception
 	 */
 	public static List<Department> listDepartments() throws Exception {
-
 		List<Department> list = new ArrayList<Department>();
-
 		String sql = "SELECT * FROM tb_department ORDER BY id DESC ";
-
 		Connection conn = null;
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
-
 		try {
 			conn = DbManager.getConnection();
 			preStmt = conn.prepareStatement(sql);
-
 			rs = preStmt.executeQuery();
-
 			while (rs.next()) {
 				Department department = new Department();
 				department.setId(rs.getInt("id"));
 				department.setName(rs.getString("name"));
-
 				list.add(department);
 			}
-
 		} finally {
 			if (rs != null)
 				rs.close();
